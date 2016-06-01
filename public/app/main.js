@@ -2,7 +2,6 @@
 
 angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
   .config($routeProvider => {
-    //NOTE(adam): partials are not loaded until requested, can be configured differently
     $routeProvider
       .when("/", {
         templateUrl: "/app/partials/home.html"
@@ -24,4 +23,12 @@ angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
 
   .controller("HelloPersonCtrl", function($scope, $routeParams) {
     $scope.header = `Hello ${$routeParams.name || "Angular World"}`;
-  });
+  })
+
+
+  //NOTE(adam): convention of all lowercase filter names
+  // .filter("uppercase", () => string => string.toUpperCase());
+  //NOTE(adam): can have secondary arguments
+  .filter("camelcase", () =>
+    string => string.toLowerCase().replace(/\ \w/g, m => m[1].toUpperCase())
+  );
