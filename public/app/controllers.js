@@ -22,3 +22,4 @@ angular.module("app")
     };
   });
 
+//NOTE(adam): no http requests in controllers!
