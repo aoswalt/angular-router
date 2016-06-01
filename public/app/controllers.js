@@ -6,4 +6,12 @@ angular.module("app")
 
   .controller("HelloPersonCtrl", function($scope, $routeParams) {
     $scope.header = `Hello ${$routeParams.name || "Angular World"}`;
+  })
+
+  .controller("TodoCtrl", function($scope, $http) {
+    $http.get("https://angular-todo-2d89f.firebaseio.com/todo.json")
+      .then(res => $scope.todos = res.data);
+
+    $scope.toggleTodo = todo => todo.completed = !todo.completed;
   });
+

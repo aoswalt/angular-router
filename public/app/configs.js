@@ -13,5 +13,9 @@ angular.module("app")
         templateUrl: "/app/partials/hello-person.html",
         controller: "HelloPersonCtrl"
       })
+      .when("/todo", {
+        templateUrl: "/app/partials/todo.html",
+        controller: "TodoCtrl"
+      })
       .otherwise("/");
   });

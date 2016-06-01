@@ -1,0 +1,9 @@
+<a href="#/">Home</a>
+<h1>ToDo List</h1>
+<ul>
+  <li ng-repeat="todo in todos"
+    ng-class="{ completed: todo.completed }"
+    ng-click="toggleTodo(todo)">
+    {{todo.name}}
+  </li>
+</ul>
