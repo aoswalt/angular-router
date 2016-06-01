@@ -1,6 +1,6 @@
 /* global angular:false */
 
-angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
+angular.module("app", ["ngRoute", "angular.filter"])   //eslint-disable-line no-unused-vars
   .config($routeProvider => {
     $routeProvider
       .when("/", {
@@ -26,9 +26,6 @@ angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
   })
 
 
-  //NOTE(adam): convention of all lowercase filter names
-  // .filter("uppercase", () => string => string.toUpperCase());
-  //NOTE(adam): can have secondary arguments
   .filter("camelcase", () =>
     string => string.toLowerCase().replace(/\ \w/g, m => m[1].toUpperCase())
   );
