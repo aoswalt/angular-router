@@ -8,17 +8,25 @@ angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
         template: "<a href='#/hello'>Hello</a><h1>Home Sweet Home</h1>"
       })
       .when("/hello", {
-        template: "<a href='#/'>Home</a><h1>{{header}}</h1>",
-        controller: "MainCtrl"
+        template: `Say hello to:
+          <form ng-submit="hello()">
+            <input ng-model="name">
+            <input type="submit"
+          </form>`,
+        controller: "HelloCtrl"
       })
       .when("/hello/:name", {
-        template: "<a href='#/'>Home</a><h1>{{header}}</h1>",
-        controller: "MainCtrl"
+        template: "<a href='#/'>Home</a> <a href='#/hello/'>Back</a><h1>{{header}}</h1>",
+        controller: "HelloPersonCtrl"
       })
       .otherwise("/");
   })
 
-  .controller("MainCtrl", function($scope, $routeParams) {
-    const { name } = $routeParams;  //NOTE(adam): destructuring because why not
-    $scope.header = `Hello ${name || "Angular World"}`;
+  .controller("HelloCtrl", function($scope, $location) {
+    // $scope.hello = () => window.location.assign(`#/hello/${$scope.name}`);
+    $scope.hello = () => $location.path(`/hello/${$scope.name}`);
+  })
+
+  .controller("HelloPersonCtrl", function($scope, $routeParams) {
+    $scope.header = `Hello ${$routeParams.name || "Angular World"}`;
   });
