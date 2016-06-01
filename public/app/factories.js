@@ -20,6 +20,3 @@ angular.module("app")
       }
     };
   });
-  //NOTE(adam): factories work across controllers
-  //NOTE(adam): generally factories preferred over services
-  //NOTE(adam): no $scope in factories!

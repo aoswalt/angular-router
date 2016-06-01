@@ -7,15 +7,18 @@ angular.module("app")
       })
       .when("/hello", {
         templateUrl: "/app/partials/hello.html",
-        controller: "HelloCtrl"
+        controller: "HelloCtrl",
+        controllerAs: "hello"
       })
       .when("/hello/:name", {
         templateUrl: "/app/partials/hello-person.html",
-        controller: "HelloPersonCtrl"
+        controller: "HelloPersonCtrl",
+        controllerAs: "helloPerson"
       })
       .when("/todo", {
         templateUrl: "/app/partials/todo.html",
-        controller: "TodoCtrl"
+        controller: "TodoCtrl",
+        controllerAs: "todo"
       })
       .otherwise("/");
   });

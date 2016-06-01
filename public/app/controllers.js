@@ -1,17 +1,20 @@
 /* global angular:false */
 angular.module("app")
-  .controller("HelloCtrl", function($scope, $location) {
-    $scope.hello = () => $location.path(`/hello/${$scope.name}`);
+  .controller("HelloCtrl", function($location) {
+    const hello = this;
+    hello.sayHello = () => $location.path(`/hello/${hello.name}`);
   })
 
-  .controller("HelloPersonCtrl", function($scope, $routeParams) {
-    $scope.header = `Hello ${$routeParams.name || "Angular World"}`;
+  .controller("HelloPersonCtrl", function($routeParams) {
+    const helloPerson = this;
+    helloPerson.header = `Hello ${$routeParams.name || "Angular World"}`;
   })
 
-  .controller("TodoCtrl", function($scope, todoFactory) {
-    todoFactory.getTodos().then(todos => $scope.todos = todos);
+  .controller("TodoCtrl", function(todoFactory) {
+    const todo = this;
+    todoFactory.getTodos().then(todos => todo.todos = todos);
 
-    $scope.toggleTodo = id => todoFactory.toggleTodo(id);
+    todo.toggleTodo = id => todoFactory.toggleTodo(id);
   });
 
 //NOTE(adam): no http requests in controllers!
