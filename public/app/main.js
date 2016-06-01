@@ -5,7 +5,7 @@ angular.module("app", ["ngRoute"])   //eslint-disable-line no-unused-vars
   .config($routeProvider => {
     $routeProvider
       .when("/", {
-        template: "<a href='#/hello'>Hello</a><h1>Home Sweet Home {{123 | currency}}</h1>"
+        template: "<a href='#/hello'>Hello</a><h1>{{'Home Sweet Home' | uppercase}}</h1>"
       })
       .when("/hello", {
         template: `Say hello to:
