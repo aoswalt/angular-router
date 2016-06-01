@@ -12,6 +12,10 @@ angular.module("app")
     $http.get("https://angular-todo-2d89f.firebaseio.com/todo.json")
       .then(res => $scope.todos = res.data);
 
-    $scope.toggleTodo = todo => todo.completed = !todo.completed;
+    $scope.toggleTodo = id => {
+      $http.patch(`https://angular-todo-2d89f.firebaseio.com/todo/${id}.json`, {
+        completed: !$scope.todos[id].completed
+      }).then(res => $scope.todos[id].completed = res.data.completed);
+    };
   });
 

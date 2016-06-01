@@ -1,9 +1,9 @@
 <a href="#/">Home</a>
 <h1>ToDo List</h1>
 <ul>
-  <li ng-repeat="todo in todos"
+  <li ng-repeat="(id, todo) in todos"
     ng-class="{ completed: todo.completed }"
-    ng-click="toggleTodo(todo)">
+    ng-click="toggleTodo(id)">
     {{todo.name}}
   </li>
 </ul>
