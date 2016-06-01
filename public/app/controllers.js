@@ -13,9 +13,12 @@ angular.module("app")
       .then(res => $scope.todos = res.data);
 
     $scope.toggleTodo = id => {
+      //NOTE(adam): optimistic update, instant update and change back if error
+      $scope.todos[id].completed = !$scope.todos[id].completed;
       $http.patch(`https://angular-todo-2d89f.firebaseio.com/todo/${id}.json`, {
-        completed: !$scope.todos[id].completed
-      }).then(res => $scope.todos[id].completed = res.data.completed);
+        completed: $scope.todos[id].completed
+      }).catch(() => $scope.todos[id].completed = !$scope.todos[id].completed);
+      //NOTE(adam): firebase responsds with 200 on some bad requests
     };
   });
 
